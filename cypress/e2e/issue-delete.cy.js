@@ -1,4 +1,4 @@
-describe('Issue details editing', () => {
+describe('Issue delete', () => {
 beforeEach(() => {
 cy.visit('/');
 cy.url().should('eq', `${Cypress.env('baseUrl')}project`).then((url) => {
