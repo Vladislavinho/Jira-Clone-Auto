@@ -19,7 +19,7 @@ it('Delete issue', () => {
  //Issue is not visible
  cy.contains('This is an issue of type: Task.').should('not.exist')
 })
-it.only('Delete issue', () => {
+it('Delete issue', () => {
  OpenIssue()
  //Try to delete issue
  cy.get('[data-testid="icon:trash"]').click()
