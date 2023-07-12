@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 describe('Issue delete', () => {
 beforeEach(() => {
 cy.visit('/');
