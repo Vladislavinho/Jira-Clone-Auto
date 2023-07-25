@@ -71,7 +71,7 @@ describe('Issue comments creating, editing and deleting', () => {
     });
 
 
-    it.only('Should delete a comment successfully', () => {
+    it('Should delete a comment successfully', () => {
         const bronercomment = 'The problem';
         const comment = 'TEST_COMMENT_EDITED';
         //create
