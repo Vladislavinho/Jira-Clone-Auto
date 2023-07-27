@@ -2,7 +2,6 @@ describe('Issue create', () => {
     beforeEach(() => {
         cy.visit('/');
         cy.url().should('eq', `${Cypress.env('baseUrl')}project/board`).then((url) => {
-            cy.visit(url + '/board?modal-issue-create=true');
         });
     });
     const getIssueCreateModal = () => cy.get('[data-testid="modal:issue-create"]');
