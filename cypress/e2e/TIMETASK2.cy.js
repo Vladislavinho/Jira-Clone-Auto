@@ -1,4 +1,3 @@
-
 describe('Issue create', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -7,49 +6,55 @@ describe('Issue create', () => {
       cy.visit(url + '/board?modal-issue-create=true');
     });
   });
-  
-  
-  const getIssueModal = () => cy.get('[data-testid="modal:issue-create"]');
-  
-  
-  it.only('My task 1 creating new issue', () => {
-getIssueModal().within(() => {
-cy.get('[data-testid="icon:plus"]').click();
- cy.get('[data-testid="select:type"]').click();
- cy.get('.sc-iqzUVk.cUBVJX').contains('Bug')
-.trigger('click');
-        
- cy.get('input[name="title"]').click();
- cy.get('input[name="title"]').type('Vlad')
-.trigger('click');
-     
-cy.get('button[type="submit"]').click();
-    })
-cy.get('[data-testid="modal:issue-create"]').should('not.exist');
-cy.contains('Issue has been successfully created.').should('be.visible');
 
-   
+const getIssueModal = () => cy.get('[data-testid="modal:issue-create"]');
+
+it.only('My task 1 creating new issue', () => {
+getIssueModal().within(() => {
+cy.get('[data-testid="select:type"]').click()
+cy.get('.sc-iqzUVk.cUBVJX').contains('Bug')
+.trigger('click');
+cy.get('input[name="title"]').click();
+cy.get('input[name="title"]').type('Vlad')
+.trigger('click');
+cy.get('button[type="submit"]').click();
+})
+cy.get('[data-testid="modal:issue-create"]').should('not.exist');
+cy.wait(5000)
+cy.contains('Issue has been successfully created.').should('be.visible');
 cy.reload();
 cy.contains('Issue has been successfully created.').should('not.exist');
-
-    
 cy.get('[data-testid="board-list:backlog').should('be.visible').and('have.length', '1').within(() => {
-       
- cy.get('[data-testid="list-issue"]')
-.should('have.length', '5')
-.first()
-.find('p')
-.contains('Vlad')
-.click()
-cy.reload();
+cy.get('[data-testid="list-issue"]').should('have.length', '5').first().find('p').contains('Vlad').click()
+})
+const lionelmessi = '10';
+const penaldo = '7';
+const NumberPlaceHolder = cy.get('input[placeholder="Number"]');
 cy.get('[data-testid="modal:issue-details"]').should('be.visible').within(() => {
+//Write estimation
+NumberPlaceHolder.type(lionelmessi);
+cy.get('[data-testid="icon:close"]').click();
+cy.get('[data-testid="board-list:backlog"]').should('be.visible');
+cy.get('[data-testid="list-issue"]').first().click();
+cy.get('input[placeholder="Number"]').should('have.value', lionelmessi);
+//Edit estimation
+ NumberPlaceHolder.click().clear()
+NumberPlaceHolder.type(penaldo);
+cy.get('input[placeholder="Number"]').should('have.value', penaldo);
+//Remove estimation
+NumberPlaceHolder.click().clear()
+cy.get('input[placeholder="Number"]').should('have.attr', 'value', '');
 
-})
-})
+
+
+
+    })
   })
+})
 
 
 
 
 
-});
+
+
