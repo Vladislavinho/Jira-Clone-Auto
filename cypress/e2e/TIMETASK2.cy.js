@@ -38,9 +38,7 @@ cy.get('[data-testid="board-list:backlog"]').should('be.visible');
 cy.get('[data-testid="list-issue"]').first().click();
 cy.get('input[placeholder="Number"]').should('have.value', lionelmessi);
 //Edit estimation
- NumberPlaceHolder
- cy.click()
- cy.clear()
+ cy.get('input[placeholder="Number"]').clear();
 NumberPlaceHolder.type(penaldo);
 cy.get('input[placeholder="Number"]').should('have.value', penaldo);
 //Remove estimation
