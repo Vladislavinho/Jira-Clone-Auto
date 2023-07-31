@@ -32,8 +32,7 @@ cy.get('[data-testid="modal:issue-details"]').should('be.visible').within(() => 
      cy.get('[data-testid="icon:close"]').first().click()
      cy.get('[data-testid="modal:issue-details"]').should('not.exist')
    });
-
-   cy.get('[data-testid="board-list:backlog"]').should('be.visible')
+  cy.get('[data-testid="board-list:backlog"]').should('be.visible')
    cy.get('[data-testid="list-issue"]').first().click()
    cy.get('input[placeholder="Number"]').should('have.value', '10');
   // Edit estimation
@@ -52,7 +51,19 @@ cy.get('[data-testid="modal:issue-details"]').should('be.visible').within(() => 
    cy.get('[data-testid="board-list:backlog"]').should('be.visible')
    cy.get('[data-testid="list-issue"]').first().click()
    cy.get('input[placeholder="Number"]').should('have.attr', 'value', '')
-
+   //Time tracking
+   cy.get('[data-testid="modal:issue-details"]').should('be.visible').within(() => {
+    cy.get('div').contains('No time logged').click()
+   })
+    cy.get('[data-testid="modal:tracking"]').should('be.visible')    
+    cy.contains('Time spent (hours)').next().click().type('2');
+    cy.contains('Time remaining (hours)').next().click().type('5')
+    cy.get('[data-testid="modal:tracking"]').contains('div', 'Done')
+    .click()
+    cy.get('[data-testid="modal:issue-details"]').should('be.visible')
+    cy.get('[data-testid="modal:issue-details"]')
+    cy.contains('2h logged').should('be.visible')
+    cy.contains('5h remaining').should('be.visible')
 
     })
   })
