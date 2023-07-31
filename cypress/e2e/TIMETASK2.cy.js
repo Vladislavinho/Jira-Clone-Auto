@@ -51,7 +51,7 @@ cy.get('[data-testid="modal:issue-details"]').should('be.visible').within(() => 
    cy.get('[data-testid="board-list:backlog"]').should('be.visible')
    cy.get('[data-testid="list-issue"]').first().click()
    cy.get('input[placeholder="Number"]').should('have.attr', 'value', '')
-   //Time tracking
+   //Time tracking Add 
    cy.get('[data-testid="modal:issue-details"]').should('be.visible').within(() => {
     cy.get('div').contains('No time logged').click()
    })
@@ -64,8 +64,17 @@ cy.get('[data-testid="modal:issue-details"]').should('be.visible').within(() => 
     cy.get('[data-testid="modal:issue-details"]')
     cy.contains('2h logged').should('be.visible')
     cy.contains('5h remaining').should('be.visible')
-
-    })
+   //Time Tracking Remove
+   cy.get('div').contains('No time logged').click()
+   cy.get('[data-testid="modal:tracking"]').should('be.visible')    
+   cy.contains('Time spent (hours)').next().click().clear()
+   cy.contains('Time remaining (hours)').next().click().clear()
+   cy.get('[data-testid="modal:tracking"]').contains('div', 'Done')
+   .click()
+   cy.get('[data-testid="modal:issue-details"]').should('be.visible')
+   cy.get('[data-testid="modal:issue-details"]')
+   cy.contains('No time logged').should('be.visible') 
+  })
   })
 
 
