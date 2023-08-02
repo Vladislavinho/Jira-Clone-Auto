@@ -60,6 +60,20 @@ describe('Issue details editing', () => {
       cy.get('.ql-snow').should('have.text', description);
     });
   });
-
   const getIssueDetailsModal = () => cy.get('[data-testid="modal:issue-details"]');
+  
+  it('Bonus Task Array', () => {
+  const expectedLength = 5
+  const Priority = ["Highest"]
+  cy.get('[data-testid="select:priority"]').click();
+
+
+
+
+
+
+
+
+
+  })
 });
